@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-current.dtd">
+<suite name="ShopperStack API Test Suite" parallel="false" verbose="2">
+
+    <test name="Admin API Tests">
+        <classes>
+            <class name="api.testcases.Admintestcases">
+                <methods>
+                    <!-- Positive Test Cases -->
+                    <include name="createAdminWithValidDataTest"/>
+                    <include name="getAdminByIdTest"/>
+                    <include name="updateAdminTest"/>
+                    <include name="apiChainingTest"/>
+                    <include name="createAdminDataDrivenTest"/>
+
+                    <!-- Negative Test Cases -->
+                    <include name="createAdminWithInvalidEmailTest"/>
+                    <include name="createAdminWithMissingFieldsTest"/>
+                    <include name="getAdminWithInvalidIdTest"/>
+                    <include name="duplicateEmailTest"/>
+                    <include name="unauthorizedAccessTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Merchant Approval Tests">
+        <classes>
+            <class name="api.testcases.MerchantApprovalTestcases"/>
+        </classes>
+    </test>
+
+    <test name="Category Management Tests">
+        <classes>
+            <class name="api.testcases.CategoryManagementTestcases"/>
+        </classes>
+    </test>
+
+    <test name="Product Management Tests">
+        <classes>
+            <class name="api.testcases.ProductManagementTestcases"/>
+        </classes>
+    </test>
+
+    <test name="Order Management Tests">
+        <classes>
+            <class name="api.testcases.OrderManagementTestcases"/>
+        </classes>
+    </test>
+
+    <test name="Reporting Tests">
+        <classes>
+            <class name="api.testcases.ReportingTestcases"/>
+        </classes>
+    </test>
+
+    <!-- Listeners for reporting -->
+    <listeners>
+        <!-- Add custom listeners here if needed -->
+    </listeners>
+
+</suite>
