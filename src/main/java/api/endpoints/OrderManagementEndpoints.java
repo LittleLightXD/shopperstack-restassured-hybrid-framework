@@ -7,9 +7,6 @@ import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
 
-/**
- * OrderManagementEndpoints - REST API endpoints for Order Management
- */
 public class OrderManagementEndpoints {
 
     private static final String ORDER_BASE = "/api/orders";
@@ -111,3 +108,4 @@ public class OrderManagementEndpoints {
                 .response();
     }
 }
+

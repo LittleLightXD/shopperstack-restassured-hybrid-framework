@@ -1,8 +1,5 @@
 package api.payload;
 
-/**
- * CategoryManagementPayload - Request payload for Category Management operations
- */
 public class CategoryManagementPayload {
     private String categoryId;
     private String categoryName;
@@ -11,7 +8,7 @@ public class CategoryManagementPayload {
     private String description;
     private boolean isActive;
 
-    // Constructors
+
     public CategoryManagementPayload() {}
 
     public CategoryManagementPayload(String categoryName, String description, boolean isActive) {
@@ -20,7 +17,7 @@ public class CategoryManagementPayload {
         this.isActive = isActive;
     }
 
-    // Getters and Setters
+
     public String getCategoryId() {
         return categoryId;
     }
@@ -69,3 +66,4 @@ public class CategoryManagementPayload {
         isActive = active;
     }
 }
+

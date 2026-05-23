@@ -2,10 +2,6 @@ package api.payload;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * WalletPayload - POJO for Wallet operations (balance, transactions)
- * Contains wallet balance and transaction fields for payment processing
- */
 public class WalletPayload {
 
     @JsonProperty("walletId")
@@ -27,7 +23,7 @@ public class WalletPayload {
     private String currency;
 
     @JsonProperty("status")
-    private String status;  // ACTIVE, INACTIVE, BLOCKED
+    private String status;
 
     @JsonProperty("lastTransactionDate")
     private String lastTransactionDate;
@@ -38,13 +34,13 @@ public class WalletPayload {
     @JsonProperty("updatedDateTime")
     private String updatedDateTime;
 
-    // Nested WalletTransaction class
+
     public static class WalletTransaction {
         @JsonProperty("transactionId")
         private String transactionId;
 
         @JsonProperty("transactionType")
-        private String transactionType;  // ADD_FUNDS, PURCHASE, REFUND, WITHDRAWAL
+        private String transactionType;
 
         @JsonProperty("amount")
         private Double amount;
@@ -53,7 +49,7 @@ public class WalletPayload {
         private String description;
 
         @JsonProperty("status")
-        private String status;  // SUCCESS, PENDING, FAILED
+        private String status;
 
         @JsonProperty("transactionDate")
         private String transactionDate;
@@ -61,7 +57,7 @@ public class WalletPayload {
         @JsonProperty("relatedOrderId")
         private String relatedOrderId;
 
-        // Constructors
+
         public WalletTransaction() {}
 
         public WalletTransaction(String transactionType, Double amount) {
@@ -69,7 +65,7 @@ public class WalletPayload {
             this.amount = amount;
         }
 
-        // Getters and Setters
+
         public String getTransactionId() {
             return transactionId;
         }
@@ -127,7 +123,7 @@ public class WalletPayload {
         }
     }
 
-    // Constructors
+
     public WalletPayload() {}
 
     public WalletPayload(String shopperId, Double balance) {
@@ -135,7 +131,7 @@ public class WalletPayload {
         this.balance = balance;
     }
 
-    // Getters and Setters
+
     public String getWalletId() {
         return walletId;
     }
@@ -216,3 +212,4 @@ public class WalletPayload {
         this.updatedDateTime = updatedDateTime;
     }
 }
+

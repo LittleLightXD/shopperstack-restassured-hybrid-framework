@@ -2,10 +2,6 @@ package api.dataproviders;
 
 import org.testng.annotations.DataProvider;
 
-/**
- * ReviewDataProvider - Test data for Review module test cases
- * Provides realistic test data variations for different review scenarios
- */
 public class ReviewDataProvider {
 
     @DataProvider(name = "validReviewData")
@@ -86,3 +82,4 @@ public class ReviewDataProvider {
         };
     }
 }
+

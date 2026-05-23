@@ -11,42 +11,34 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 import java.io.File;
 
-/**
- * BaseTest class - base setup for all test classes
- * Handles common setup, teardown, and reporting
- */
 public class BaseTest {
 
     protected ExtentReports extentReports;
     protected ExtentTest test;
     protected ConfigReader config;
 
-    /**
-     * Setup before running tests
-     */
+
     @BeforeClass
     public void setUp() {
         config = ConfigReader.getInstance();
         CustomLogger.info("========== Test Setup Started ==========");
         CustomLogger.info("Base URL: " + config.getBaseURL());
         CustomLogger.info("Environment: " + config.getEnvironment());
-        
+
         initializeExtentReports();
-        
-        // Generate token for authenticated requests (disabled by default as endpoint may not exist)
-        // Uncomment the line below after setting up login endpoint
-        // TokenManager.generateToken();
-        
+
+
+
+
+
         CustomLogger.info("========== Test Setup Completed ==========");
     }
 
-    /**
-     * Initialize Extent Reports
-     */
+
     public void initializeExtentReports() {
         String reportPath = config.getExtentReportPath();
-        
-        // Create directory if it doesn't exist
+
+
         File reportDir = new File(reportPath);
         if (!reportDir.exists()) {
             reportDir.mkdirs();
@@ -64,36 +56,31 @@ public class BaseTest {
         extentReports.setSystemInfo("Test Framework", "REST Assured + TestNG");
     }
 
-    /**
-     * Cleanup after running tests
-     */
+
     @AfterClass
     public void tearDown() {
         CustomLogger.info("========== Test Teardown Started ==========");
-        
-        // Clear token after tests
+
+
         TokenManager.clearToken();
-        
-        // Flush extent reports
+
+
         if (extentReports != null) {
             extentReports.flush();
             CustomLogger.info("✓ Test Report Generated");
         }
-        
+
         CustomLogger.info("========== Test Teardown Completed ==========");
     }
 
-    /**
-     * Get config reader instance
-     */
+
     public ConfigReader getConfig() {
         return config;
     }
 
-    /**
-     * Get extent test instance
-     */
+
     public ExtentTest getExtentTest() {
         return test;
     }
 }
+

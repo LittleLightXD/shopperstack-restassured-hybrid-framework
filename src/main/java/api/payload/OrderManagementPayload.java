@@ -1,8 +1,5 @@
 package api.payload;
 
-/**
- * OrderManagementPayload - Request payload for Order Management operations
- */
 public class OrderManagementPayload {
     private String orderId;
     private String customerId;
@@ -14,7 +11,7 @@ public class OrderManagementPayload {
     private double price;
     private String cancellationReason;
 
-    // Constructors
+
     public OrderManagementPayload() {}
 
     public OrderManagementPayload(String customerId, String status, double totalAmount) {
@@ -23,7 +20,7 @@ public class OrderManagementPayload {
         this.totalAmount = totalAmount;
     }
 
-    // Getters and Setters
+
     public String getOrderId() {
         return orderId;
     }
@@ -96,3 +93,4 @@ public class OrderManagementPayload {
         this.cancellationReason = cancellationReason;
     }
 }
+

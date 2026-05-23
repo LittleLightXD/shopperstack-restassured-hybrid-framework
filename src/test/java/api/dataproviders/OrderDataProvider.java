@@ -3,10 +3,6 @@ package api.dataproviders;
 import api.utils.FakeDataGenerator;
 import org.testng.annotations.DataProvider;
 
-/**
- * OrderDataProvider - Test data for Order module test cases
- * Provides realistic test data variations for different order scenarios
- */
 public class OrderDataProvider {
 
     @DataProvider(name = "validOrderData")
@@ -33,10 +29,10 @@ public class OrderDataProvider {
     @DataProvider(name = "orderWithDiscountData")
     public Object[][] orderWithDiscountData() {
         return new Object[][] {
-            {"shopper-001", 1000.0, 100.0, "CREDIT_CARD"},  // 10% discount
-            {"shopper-002", 1500.0, 300.0, "DEBIT_CARD"},   // 20% discount
-            {"shopper-003", 2000.0, 200.0, "NET_BANKING"},  // 10% discount
-            {"shopper-004", 500.0, 50.0, "UPI"},            // 10% discount
+            {"shopper-001", 1000.0, 100.0, "CREDIT_CARD"},
+            {"shopper-002", 1500.0, 300.0, "DEBIT_CARD"},
+            {"shopper-003", 2000.0, 200.0, "NET_BANKING"},
+            {"shopper-004", 500.0, 50.0, "UPI"},
         };
     }
 
@@ -74,10 +70,11 @@ public class OrderDataProvider {
     @DataProvider(name = "orderWithTaxData")
     public Object[][] orderWithTaxData() {
         return new Object[][] {
-            {"shopper-001", 1000.0, 100.0, "CREDIT_CARD"},  // 10% tax
-            {"shopper-002", 1000.0, 80.0, "DEBIT_CARD"},    // 8% tax
-            {"shopper-003", 1000.0, 120.0, "NET_BANKING"},  // 12% tax
-            {"shopper-004", 1000.0, 50.0, "UPI"},           // 5% tax
+            {"shopper-001", 1000.0, 100.0, "CREDIT_CARD"},
+            {"shopper-002", 1000.0, 80.0, "DEBIT_CARD"},
+            {"shopper-003", 1000.0, 120.0, "NET_BANKING"},
+            {"shopper-004", 1000.0, 50.0, "UPI"},
         };
     }
 }
+

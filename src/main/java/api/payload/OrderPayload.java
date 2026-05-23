@@ -3,10 +3,6 @@ package api.payload;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/**
- * OrderPayload - POJO for Order API request/response
- * Contains all order-related fields including items, pricing, and delivery details
- */
 public class OrderPayload {
 
     @JsonProperty("orderId")
@@ -60,7 +56,7 @@ public class OrderPayload {
     @JsonProperty("updatedDateTime")
     private String updatedDateTime;
 
-    // Nested OrderItem class
+
     public static class OrderItem {
         @JsonProperty("productId")
         private String productId;
@@ -80,7 +76,7 @@ public class OrderPayload {
         @JsonProperty("totalPrice")
         private Double totalPrice;
 
-        // Constructors
+
         public OrderItem() {}
 
         public OrderItem(String productId, Integer quantity, Double price) {
@@ -89,7 +85,7 @@ public class OrderPayload {
             this.price = price;
         }
 
-        // Getters and Setters
+
         public String getProductId() {
             return productId;
         }
@@ -139,7 +135,7 @@ public class OrderPayload {
         }
     }
 
-    // Nested ShippingDetails class
+
     public static class ShippingDetails {
         @JsonProperty("shippingAddress")
         private String shippingAddress;
@@ -162,7 +158,7 @@ public class OrderPayload {
         @JsonProperty("estimatedDelivery")
         private String estimatedDelivery;
 
-        // Constructors
+
         public ShippingDetails() {}
 
         public ShippingDetails(String shippingAddress, String city, String zipCode) {
@@ -171,7 +167,7 @@ public class OrderPayload {
             this.zipCode = zipCode;
         }
 
-        // Getters and Setters
+
         public String getShippingAddress() {
             return shippingAddress;
         }
@@ -229,7 +225,7 @@ public class OrderPayload {
         }
     }
 
-    // Constructors
+
     public OrderPayload() {}
 
     public OrderPayload(String shopperId, Double totalAmount, String paymentMethod) {
@@ -238,7 +234,7 @@ public class OrderPayload {
         this.paymentMethod = paymentMethod;
     }
 
-    // Getters and Setters
+
     public String getOrderId() {
         return orderId;
     }
@@ -375,3 +371,4 @@ public class OrderPayload {
         this.updatedDateTime = updatedDateTime;
     }
 }
+

@@ -2,10 +2,6 @@ package api.payload;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * ProductPayload - POJO for Product API request/response
- * Contains all product-related fields for creation, update, and retrieval
- */
 public class ProductPayload {
 
     @JsonProperty("productId")
@@ -56,7 +52,7 @@ public class ProductPayload {
     @JsonProperty("updatedDateTime")
     private String updatedDateTime;
 
-    // Nested Category class
+
     public static class CategoryDetails {
         @JsonProperty("categoryId")
         private String categoryId;
@@ -67,7 +63,7 @@ public class ProductPayload {
         @JsonProperty("categoryImage")
         private String categoryImage;
 
-        // Constructors
+
         public CategoryDetails() {}
 
         public CategoryDetails(String categoryName, String categoryImage) {
@@ -75,7 +71,7 @@ public class ProductPayload {
             this.categoryImage = categoryImage;
         }
 
-        // Getters and Setters
+
         public String getCategoryId() {
             return categoryId;
         }
@@ -101,18 +97,18 @@ public class ProductPayload {
         }
     }
 
-    // Nested Brand class
+
     public static class BrandDetails {
         @JsonProperty("brandId")
         private String brandId;
 
-        @JsonProperty("brandName") 
+        @JsonProperty("brandName")
         private String brandName;
 
-        @JsonProperty("brandImage") 
+        @JsonProperty("brandImage")
         private String brandImage;
 
-        // Constructors
+
         public BrandDetails() {}
 
         public BrandDetails(String brandName, String brandImage) {
@@ -120,7 +116,7 @@ public class ProductPayload {
             this.brandImage = brandImage;
         }
 
-        // Getters and Setters
+
         public String getBrandId() {
             return brandId;
         }
@@ -146,7 +142,7 @@ public class ProductPayload {
         }
     }
 
-    // Constructors
+
     public ProductPayload() {}
 
     public ProductPayload(String productName, Double price, Integer quantity, String category) {
@@ -156,7 +152,7 @@ public class ProductPayload {
         this.category = category;
     }
 
-    // Getters and Setters
+
     public String getProductId() {
         return productId;
     }
@@ -285,3 +281,4 @@ public class ProductPayload {
         this.updatedDateTime = updatedDateTime;
     }
 }
+

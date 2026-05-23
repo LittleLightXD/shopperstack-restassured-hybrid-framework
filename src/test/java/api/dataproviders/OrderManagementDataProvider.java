@@ -2,9 +2,6 @@ package api.dataproviders;
 
 import org.testng.annotations.DataProvider;
 
-/**
- * OrderManagementDataProvider - Data provider for order management test cases
- */
 public class OrderManagementDataProvider {
 
     @DataProvider(name = "orderData")
@@ -17,3 +14,4 @@ public class OrderManagementDataProvider {
         };
     }
 }
+

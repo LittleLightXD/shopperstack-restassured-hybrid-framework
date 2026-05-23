@@ -6,15 +6,9 @@ import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
 
-/**
- * AdminReviewEndpoints - REST API endpoints for Admin Review Management
- * Provides admin-level review operations (view all reviews, delete inappropriate reviews)
- */
 public class AdminReviewEndpoints {
 
-    /**
-     * Get all reviews (Admin privilege)
-     */
+
     public static Response getAllReviews() {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -25,9 +19,7 @@ public class AdminReviewEndpoints {
                 .response();
     }
 
-    /**
-     * Get pending review moderation list
-     */
+
     public static Response getPendingReviewsForModeration() {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -39,9 +31,7 @@ public class AdminReviewEndpoints {
                 .response();
     }
 
-    /**
-     * Get flagged/inappropriate reviews
-     */
+
     public static Response getFlaggedReviews() {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -53,9 +43,7 @@ public class AdminReviewEndpoints {
                 .response();
     }
 
-    /**
-     * Delete review by admin (permanent deletion)
-     */
+
     public static Response deleteReviewByAdmin(String reviewId, String reason) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -67,9 +55,7 @@ public class AdminReviewEndpoints {
                 .response();
     }
 
-    /**
-     * Approve flagged review
-     */
+
     public static Response approveFlaggedReview(String reviewId) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -81,9 +67,7 @@ public class AdminReviewEndpoints {
                 .response();
     }
 
-    /**
-     * Reject flagged review
-     */
+
     public static Response rejectFlaggedReview(String reviewId, String reason) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -95,9 +79,7 @@ public class AdminReviewEndpoints {
                 .response();
     }
 
-    /**
-     * Get reviews by merchant (admin view)
-     */
+
     public static Response getReviewsByMerchantAdmin(String merchantId) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -109,9 +91,7 @@ public class AdminReviewEndpoints {
                 .response();
     }
 
-    /**
-     * Get review statistics (admin dashboard)
-     */
+
     public static Response getReviewStatistics() {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -123,9 +103,7 @@ public class AdminReviewEndpoints {
                 .response();
     }
 
-    /**
-     * Get low-rating reviews for monitoring
-     */
+
     public static Response getLowRatingReviews(Integer maxRating) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -137,3 +115,4 @@ public class AdminReviewEndpoints {
                 .response();
     }
 }
+

@@ -7,9 +7,6 @@ import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
 
-/**
- * ProductManagementEndpoints - REST API endpoints for Product Management
- */
 public class ProductManagementEndpoints {
 
     private static final String PRODUCT_BASE = "/api/products";
@@ -110,3 +107,4 @@ public class ProductManagementEndpoints {
                 .response();
     }
 }
+

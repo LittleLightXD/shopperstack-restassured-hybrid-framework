@@ -7,15 +7,9 @@ import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
 
-/**
- * MerchantApprovalEndpoints - REST API endpoints for Merchant Approval/Management
- * Provides admin-level operations for merchant approval, rejection, and status management
- */
 public class MerchantApprovalEndpoints {
 
-    /**
-     * Get all pending merchants (status = PENDING_APPROVAL)
-     */
+
     public static Response getPendingMerchants() {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -27,9 +21,7 @@ public class MerchantApprovalEndpoints {
                 .response();
     }
 
-    /**
-     * Get approved merchants
-     */
+
     public static Response getApprovedMerchants() {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -41,9 +33,7 @@ public class MerchantApprovalEndpoints {
                 .response();
     }
 
-    /**
-     * Get blocked merchants
-     */
+
     public static Response getBlockedMerchants() {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -55,9 +45,7 @@ public class MerchantApprovalEndpoints {
                 .response();
     }
 
-    /**
-     * Approve merchant (PATCH request)
-     */
+
     public static Response approveMerchant(String merchantId, MerchantApprovalPayload payload) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -69,9 +57,7 @@ public class MerchantApprovalEndpoints {
                 .response();
     }
 
-    /**
-     * Reject merchant approval (PATCH request)
-     */
+
     public static Response rejectMerchant(String merchantId, MerchantApprovalPayload payload) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -83,9 +69,7 @@ public class MerchantApprovalEndpoints {
                 .response();
     }
 
-    /**
-     * Block merchant account (PATCH request)
-     */
+
     public static Response blockMerchant(String merchantId, MerchantApprovalPayload payload) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -97,9 +81,7 @@ public class MerchantApprovalEndpoints {
                 .response();
     }
 
-    /**
-     * Unblock merchant account (PATCH request)
-     */
+
     public static Response unblockMerchant(String merchantId) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -110,9 +92,7 @@ public class MerchantApprovalEndpoints {
                 .response();
     }
 
-    /**
-     * Get pending merchants count
-     */
+
     public static Response getPendingMerchantsCount() {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -125,9 +105,7 @@ public class MerchantApprovalEndpoints {
                 .response();
     }
 
-    /**
-     * Get merchant approval history
-     */
+
     public static Response getMerchantApprovalHistory(String merchantId) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -138,9 +116,7 @@ public class MerchantApprovalEndpoints {
                 .response();
     }
 
-    /**
-     * Delete merchant permanently (cascade delete)
-     */
+
     public static Response deleteMerchantPermanently(String merchantId) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -151,9 +127,7 @@ public class MerchantApprovalEndpoints {
                 .response();
     }
 
-    /**
-     * Get merchants by approval criteria
-     */
+
     public static Response getMerchantsByApprovalCriteria(String status, Integer minRating) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -166,3 +140,4 @@ public class MerchantApprovalEndpoints {
                 .response();
     }
 }
+

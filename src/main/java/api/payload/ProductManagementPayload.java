@@ -1,8 +1,5 @@
 package api.payload;
 
-/**
- * ProductManagementPayload - Request payload for Product Management operations
- */
 public class ProductManagementPayload {
     private String productId;
     private String productName;
@@ -13,7 +10,7 @@ public class ProductManagementPayload {
     private String description;
     private String imageUrl;
 
-    // Constructors
+
     public ProductManagementPayload() {}
 
     public ProductManagementPayload(String productName, String sku, double price, int quantity) {
@@ -23,7 +20,7 @@ public class ProductManagementPayload {
         this.quantity = quantity;
     }
 
-    // Getters and Setters
+
     public String getProductId() {
         return productId;
     }
@@ -88,3 +85,4 @@ public class ProductManagementPayload {
         this.imageUrl = imageUrl;
     }
 }
+

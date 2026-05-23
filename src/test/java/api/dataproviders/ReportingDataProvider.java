@@ -2,9 +2,6 @@ package api.dataproviders;
 
 import org.testng.annotations.DataProvider;
 
-/**
- * ReportingDataProvider - Data provider for reporting and analytics test cases
- */
 public class ReportingDataProvider {
 
     @DataProvider(name = "reportData")
@@ -17,3 +14,4 @@ public class ReportingDataProvider {
         };
     }
 }
+

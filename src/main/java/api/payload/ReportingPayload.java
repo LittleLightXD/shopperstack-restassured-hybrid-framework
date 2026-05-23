@@ -1,8 +1,5 @@
 package api.payload;
 
-/**
- * ReportingPayload - Request payload for Reporting and Analytics operations
- */
 public class ReportingPayload {
     private String reportType;
     private String startDate;
@@ -11,7 +8,7 @@ public class ReportingPayload {
     private String merchantId;
     private int limit;
 
-    // Constructors
+
     public ReportingPayload() {}
 
     public ReportingPayload(String reportType, String startDate, String endDate) {
@@ -20,7 +17,7 @@ public class ReportingPayload {
         this.endDate = endDate;
     }
 
-    // Getters and Setters
+
     public String getReportType() {
         return reportType;
     }
@@ -69,3 +66,4 @@ public class ReportingPayload {
         this.limit = limit;
     }
 }
+

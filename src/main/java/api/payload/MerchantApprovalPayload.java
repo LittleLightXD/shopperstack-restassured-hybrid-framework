@@ -2,10 +2,6 @@ package api.payload;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * MerchantApprovalPayload - POJO for Merchant Approval/Management operations
- * Contains fields for merchant approval, rejection, blocking, and status updates by Admin
- */
 public class MerchantApprovalPayload {
 
     @JsonProperty("merchantId")
@@ -38,7 +34,7 @@ public class MerchantApprovalPayload {
     @JsonProperty("isActive")
     private Boolean isActive;
 
-    // Constructors
+
     public MerchantApprovalPayload() {}
 
     public MerchantApprovalPayload(String merchantId, String approvalStatus, String reason) {
@@ -47,7 +43,7 @@ public class MerchantApprovalPayload {
         this.reason = reason;
     }
 
-    // Getters and Setters
+
     public String getMerchantId() {
         return merchantId;
     }
@@ -128,3 +124,4 @@ public class MerchantApprovalPayload {
         this.isActive = isActive;
     }
 }
+

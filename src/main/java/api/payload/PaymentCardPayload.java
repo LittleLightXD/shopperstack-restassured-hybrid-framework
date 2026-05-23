@@ -2,10 +2,6 @@ package api.payload;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * PaymentCardPayload - POJO for Payment Card operations (Credit Card, Debit Card)
- * Contains all payment card fields for creation, update, and deletion
- */
 public class PaymentCardPayload {
 
     @JsonProperty("cardId")
@@ -27,7 +23,7 @@ public class PaymentCardPayload {
     private String cvv;
 
     @JsonProperty("cardType")
-    private String cardType;  // CREDIT_CARD, DEBIT_CARD
+    private String cardType;
 
     @JsonProperty("issuerBank")
     private String issuerBank;
@@ -44,7 +40,7 @@ public class PaymentCardPayload {
     @JsonProperty("updatedDateTime")
     private String updatedDateTime;
 
-    // Constructors
+
     public PaymentCardPayload() {}
 
     public PaymentCardPayload(String cardNumber, String cardholderName, String expiryMonth, String expiryYear, String cvv, String cardType) {
@@ -56,7 +52,7 @@ public class PaymentCardPayload {
         this.cardType = cardType;
     }
 
-    // Getters and Setters
+
     public String getCardId() {
         return cardId;
     }
@@ -153,3 +149,4 @@ public class PaymentCardPayload {
         this.updatedDateTime = updatedDateTime;
     }
 }
+

@@ -2,9 +2,6 @@ package api.dataproviders;
 
 import org.testng.annotations.DataProvider;
 
-/**
- * ProductManagementDataProvider - Data provider for product management test cases
- */
 public class ProductManagementDataProvider {
 
     @DataProvider(name = "productData")
@@ -17,3 +14,4 @@ public class ProductManagementDataProvider {
         };
     }
 }
+

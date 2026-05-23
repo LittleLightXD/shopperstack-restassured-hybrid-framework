@@ -2,9 +2,6 @@ package api.dataproviders;
 
 import org.testng.annotations.DataProvider;
 
-/**
- * CategoryManagementDataProvider - Data provider for category management test cases
- */
 public class CategoryManagementDataProvider {
 
     @DataProvider(name = "categoryData")
@@ -17,3 +14,4 @@ public class CategoryManagementDataProvider {
         };
     }
 }
+

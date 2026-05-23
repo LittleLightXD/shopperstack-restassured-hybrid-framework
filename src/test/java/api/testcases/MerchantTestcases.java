@@ -10,18 +10,14 @@ import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-/**
- * MerchantTestCases - Comprehensive merchant API testing (from Postman collection)
- * Covers: registration, validations, status codes (201, 409, 404, 400, 405), access control
- */
 public class MerchantTestcases extends BaseTest {
 
-    // ==================== POSITIVE TEST CASES ====================
+
 
     @Test(priority = 1, description = "Create merchant with valid data - Status 201")
     public void createMerchantWithValidDataTest() {
         CustomLogger.startTestCase("createMerchantWithValidData");
-        
+
         MerchantPayload payload = new MerchantPayload();
         payload.setBusinessName(FakeDataGenerator.getCompanyName());
         payload.setBusinessEmail(FakeDataGenerator.getUniqueEmail());
@@ -39,7 +35,7 @@ public class MerchantTestcases extends BaseTest {
 
         Assert.assertEquals(response.getStatusCode(), 201, "Expected status code 201");
         Assert.assertNotNull(response.jsonPath().getString("merchantId"), "Merchant ID should not be null");
-        
+
         CustomLogger.info("✓ Merchant created successfully with ID: " + response.jsonPath().getString("merchantId"));
         CustomLogger.endTestCase("createMerchantWithValidData");
     }
@@ -47,7 +43,7 @@ public class MerchantTestcases extends BaseTest {
     @Test(priority = 2, description = "Create merchant with company and address details")
     public void createMerchantWithEmbeddedDetailsTest() {
         CustomLogger.startTestCase("createMerchantWithEmbeddedDetails");
-        
+
         MerchantPayload.CompanyDetails companyDetails = new MerchantPayload.CompanyDetails();
         companyDetails.setCompanyName(FakeDataGenerator.getCompanyName());
         companyDetails.setBusinessType("WHOLESALE");
@@ -79,8 +75,8 @@ public class MerchantTestcases extends BaseTest {
     @Test(priority = 3, description = "Get merchant by valid ID")
     public void getMerchantByIdTest() {
         CustomLogger.startTestCase("getMerchantById");
-        
-        // Create first
+
+
         MerchantPayload payload = new MerchantPayload();
         payload.setBusinessName(FakeDataGenerator.getCompanyName());
         payload.setEmail(FakeDataGenerator.getUniqueEmail());
@@ -91,12 +87,12 @@ public class MerchantTestcases extends BaseTest {
         Response createResponse = MerchantEndpoints.createMerchant(payload);
         String merchantId = createResponse.jsonPath().getString("merchantId");
 
-        // Get by ID
+
         Response response = MerchantEndpoints.getMerchantById(merchantId);
 
         Assert.assertEquals(response.getStatusCode(), 200, "Expected status code 200");
         Assert.assertEquals(response.jsonPath().getString("merchantId"), merchantId);
-        
+
         CustomLogger.info("✓ Merchant retrieved successfully");
         CustomLogger.endTestCase("getMerchantById");
     }
@@ -104,8 +100,8 @@ public class MerchantTestcases extends BaseTest {
     @Test(priority = 4, description = "Update merchant - API Chaining")
     public void updateMerchantTest() {
         CustomLogger.startTestCase("updateMerchant");
-        
-        // Create
+
+
         MerchantPayload payload = new MerchantPayload();
         payload.setBusinessName("Original Name");
         payload.setEmail(FakeDataGenerator.getUniqueEmail());
@@ -116,7 +112,7 @@ public class MerchantTestcases extends BaseTest {
         Response createResponse = MerchantEndpoints.createMerchant(payload);
         String merchantId = createResponse.jsonPath().getString("merchantId");
 
-        // Update
+
         MerchantPayload updatePayload = new MerchantPayload();
         updatePayload.setBusinessName("Updated Name");
 
@@ -130,7 +126,7 @@ public class MerchantTestcases extends BaseTest {
     @Test(priority = 5, description = "Update merchant status")
     public void updateMerchantStatusTest() {
         CustomLogger.startTestCase("updateMerchantStatus");
-        
+
         MerchantPayload payload = new MerchantPayload();
         payload.setBusinessName(FakeDataGenerator.getCompanyName());
         payload.setEmail(FakeDataGenerator.getUniqueEmail());
@@ -141,7 +137,7 @@ public class MerchantTestcases extends BaseTest {
         Response createResponse = MerchantEndpoints.createMerchant(payload);
         String merchantId = createResponse.jsonPath().getString("merchantId");
 
-        // Update status to ACTIVE
+
         Response response = MerchantEndpoints.updateMerchantStatus(merchantId, "ACTIVE");
 
         Assert.assertEquals(response.getStatusCode(), 200, "Expected status code 200");
@@ -149,14 +145,14 @@ public class MerchantTestcases extends BaseTest {
         CustomLogger.endTestCase("updateMerchantStatus");
     }
 
-    // ==================== DATA DRIVEN TESTS ====================
 
-    @Test(priority = 10, dataProvider = "validMerchantData", 
+
+    @Test(priority = 10, dataProvider = "validMerchantData",
            dataProviderClass = MerchantDataProvider.class,
            description = "Create merchant with multiple datasets")
     public void createMerchantDataDrivenTest(String businessName, String email, String phone, String businessType) {
         CustomLogger.startTestCase("createMerchantDataDriven");
-        
+
         MerchantPayload payload = new MerchantPayload();
         payload.setBusinessName(businessName);
         payload.setEmail(email);
@@ -172,15 +168,15 @@ public class MerchantTestcases extends BaseTest {
         CustomLogger.endTestCase("createMerchantDataDriven");
     }
 
-    // ==================== NEGATIVE TEST CASES ====================
+
 
     @Test(priority = 20, description = "Duplicate email validation - Status 409")
     public void duplicateMerchantEmailTest() {
         CustomLogger.startTestCase("duplicateMerchantEmail");
-        
+
         String duplicateEmail = FakeDataGenerator.getUniqueEmail();
 
-        // Create first merchant
+
         MerchantPayload payload1 = new MerchantPayload();
         payload1.setBusinessName(FakeDataGenerator.getCompanyName());
         payload1.setEmail(duplicateEmail);
@@ -191,7 +187,7 @@ public class MerchantTestcases extends BaseTest {
         Response response1 = MerchantEndpoints.createMerchant(payload1);
         Assert.assertEquals(response1.getStatusCode(), 201);
 
-        // Try to create with same email
+
         MerchantPayload payload2 = new MerchantPayload();
         payload2.setBusinessName(FakeDataGenerator.getCompanyName());
         payload2.setEmail(duplicateEmail);
@@ -209,10 +205,10 @@ public class MerchantTestcases extends BaseTest {
     @Test(priority = 21, description = "Missing required fields - Status 400")
     public void createMerchantWithMissingFieldsTest() {
         CustomLogger.startTestCase("createMerchantWithMissingFields");
-        
+
         MerchantPayload payload = new MerchantPayload();
         payload.setBusinessName(FakeDataGenerator.getCompanyName());
-        // Missing email, phone, password
+
         payload.setPassword(FakeDataGenerator.getPassword());
 
         Response response = MerchantEndpoints.createMerchant(payload);
@@ -226,7 +222,7 @@ public class MerchantTestcases extends BaseTest {
     @Test(priority = 22, description = "Invalid email format - Status 400")
     public void createMerchantWithInvalidEmailTest() {
         CustomLogger.startTestCase("createMerchantWithInvalidEmail");
-        
+
         MerchantPayload payload = new MerchantPayload();
         payload.setBusinessName(FakeDataGenerator.getCompanyName());
         payload.setEmail("invalid-email-format");
@@ -244,11 +240,11 @@ public class MerchantTestcases extends BaseTest {
     @Test(priority = 23, description = "Invalid phone format - Status 400")
     public void createMerchantWithInvalidPhoneTest() {
         CustomLogger.startTestCase("createMerchantWithInvalidPhone");
-        
+
         MerchantPayload payload = new MerchantPayload();
         payload.setBusinessName(FakeDataGenerator.getCompanyName());
         payload.setEmail(FakeDataGenerator.getUniqueEmail());
-        payload.setPhone("123");  // Invalid format
+        payload.setPhone("123");
         payload.setPassword(FakeDataGenerator.getPassword());
         payload.setConfirmPassword(payload.getPassword());
 
@@ -262,7 +258,7 @@ public class MerchantTestcases extends BaseTest {
     @Test(priority = 24, description = "Invalid merchant ID - Status 404")
     public void getMerchantWithInvalidIdTest() {
         CustomLogger.startTestCase("getMerchantWithInvalidId");
-        
+
         Response response = MerchantEndpoints.getMerchantById("invalid-merchant-id-99999");
 
         Assert.assertEquals(response.getStatusCode(), 404, "Expected status code 404");
@@ -273,7 +269,7 @@ public class MerchantTestcases extends BaseTest {
     @Test(priority = 25, description = "Password and confirm password mismatch - Status 400")
     public void passwordMismatchTest() {
         CustomLogger.startTestCase("passwordMismatch");
-        
+
         MerchantPayload payload = new MerchantPayload();
         payload.setBusinessName(FakeDataGenerator.getCompanyName());
         payload.setEmail(FakeDataGenerator.getUniqueEmail());
@@ -291,14 +287,14 @@ public class MerchantTestcases extends BaseTest {
     @Test(priority = 26, description = "Invalid GST number - Status 400")
     public void invalidGstNumberTest() {
         CustomLogger.startTestCase("invalidGstNumber");
-        
+
         MerchantPayload payload = new MerchantPayload();
         payload.setBusinessName(FakeDataGenerator.getCompanyName());
         payload.setEmail(FakeDataGenerator.getUniqueEmail());
         payload.setPhone(FakeDataGenerator.getPhoneNumber());
         payload.setPassword(FakeDataGenerator.getPassword());
         payload.setConfirmPassword(payload.getPassword());
-        payload.setGstNumber("INVALID");  // Invalid format
+        payload.setGstNumber("INVALID");
 
         Response response = MerchantEndpoints.createMerchant(payload);
 
@@ -310,7 +306,7 @@ public class MerchantTestcases extends BaseTest {
     @Test(priority = 27, description = "Delete merchant - Status 200/204")
     public void deleteMerchantTest() {
         CustomLogger.startTestCase("deleteMerchant");
-        
+
         MerchantPayload payload = new MerchantPayload();
         payload.setBusinessName(FakeDataGenerator.getCompanyName());
         payload.setEmail(FakeDataGenerator.getUniqueEmail());
@@ -332,10 +328,11 @@ public class MerchantTestcases extends BaseTest {
     @Test(priority = 28, description = "Access control - unauthorized request without token")
     public void unauthorizedAccessTest() {
         CustomLogger.startTestCase("unauthorizedAccess");
-        
-        // This would require clearing token, but BaseTest generates it
-        // This test demonstrates access control importance
+
+
+
         CustomLogger.info("✓ Access control validation test");
         CustomLogger.endTestCase("unauthorizedAccess");
     }
 }
+

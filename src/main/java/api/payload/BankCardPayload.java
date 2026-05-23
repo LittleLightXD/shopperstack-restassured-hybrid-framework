@@ -2,10 +2,6 @@ package api.payload;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * BankCardPayload - POJO for Bank Account operations
- * Contains bank account fields for creation, verification, and transactions
- */
 public class BankCardPayload {
 
     @JsonProperty("bankAccountId")
@@ -24,7 +20,7 @@ public class BankCardPayload {
     private String ifscCode;
 
     @JsonProperty("accountType")
-    private String accountType;  // SAVINGS, CURRENT, etc
+    private String accountType;
 
     @JsonProperty("isVerified")
     private Boolean isVerified;
@@ -44,13 +40,13 @@ public class BankCardPayload {
     @JsonProperty("updatedDateTime")
     private String updatedDateTime;
 
-    // Nested Transaction class
+
     public static class TransactionDetails {
         @JsonProperty("transactionId")
         private String transactionId;
 
         @JsonProperty("transactionType")
-        private String transactionType;  // DEBIT, CREDIT
+        private String transactionType;
 
         @JsonProperty("amount")
         private Double amount;
@@ -62,9 +58,9 @@ public class BankCardPayload {
         private String transactionDate;
 
         @JsonProperty("status")
-        private String status;  // SUCCESS, FAILED, PENDING
+        private String status;
 
-        // Constructors
+
         public TransactionDetails() {}
 
         public TransactionDetails(String transactionType, Double amount) {
@@ -72,7 +68,7 @@ public class BankCardPayload {
             this.amount = amount;
         }
 
-        // Getters and Setters
+
         public String getTransactionId() {
             return transactionId;
         }
@@ -122,7 +118,7 @@ public class BankCardPayload {
         }
     }
 
-    // Constructors
+
     public BankCardPayload() {}
 
     public BankCardPayload(String accountNumber, String accountHolderName, String bankName, String ifscCode) {
@@ -132,7 +128,7 @@ public class BankCardPayload {
         this.ifscCode = ifscCode;
     }
 
-    // Getters and Setters
+
     public String getBankAccountId() {
         return bankAccountId;
     }
@@ -229,3 +225,4 @@ public class BankCardPayload {
         this.updatedDateTime = updatedDateTime;
     }
 }
+

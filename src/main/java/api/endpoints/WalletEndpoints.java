@@ -7,15 +7,9 @@ import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
 
-/**
- * WalletEndpoints - REST API endpoints for Wallet operations
- * Provides wallet balance management and transaction processing
- */
 public class WalletEndpoints {
 
-    /**
-     * Get wallet balance for shopper
-     */
+
     public static Response getWalletBalance(String shopperId) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -26,9 +20,7 @@ public class WalletEndpoints {
                 .response();
     }
 
-    /**
-     * Add funds to wallet
-     */
+
     public static Response addFundsToWallet(String shopperId, Double amount) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -40,9 +32,7 @@ public class WalletEndpoints {
                 .response();
     }
 
-    /**
-     * Deduct funds from wallet
-     */
+
     public static Response deductFundsFromWallet(String shopperId, Double amount, String reason) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -54,9 +44,7 @@ public class WalletEndpoints {
                 .response();
     }
 
-    /**
-     * Process wallet transaction
-     */
+
     public static Response processWalletTransaction(String shopperId, WalletPayload.WalletTransaction transaction) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -68,9 +56,7 @@ public class WalletEndpoints {
                 .response();
     }
 
-    /**
-     * Get wallet transaction history
-     */
+
     public static Response getWalletTransactionHistory(String shopperId) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -81,9 +67,7 @@ public class WalletEndpoints {
                 .response();
     }
 
-    /**
-     * Refund to wallet
-     */
+
     public static Response refundToWallet(String shopperId, Double amount, String orderId) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -95,9 +79,7 @@ public class WalletEndpoints {
                 .response();
     }
 
-    /**
-     * Get wallet details
-     */
+
     public static Response getWalletDetails(String shopperId) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -108,9 +90,7 @@ public class WalletEndpoints {
                 .response();
     }
 
-    /**
-     * Withdraw funds from wallet
-     */
+
     public static Response withdrawFundsFromWallet(String shopperId, Double amount) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -122,3 +102,4 @@ public class WalletEndpoints {
                 .response();
     }
 }
+

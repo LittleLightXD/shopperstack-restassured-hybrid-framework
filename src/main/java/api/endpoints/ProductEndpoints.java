@@ -7,15 +7,9 @@ import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
 
-/**
- * ProductEndpoints - REST API endpoints for Product module
- * Provides all product-related operations (CRUD, search, filtering, merchant products)
- */
 public class ProductEndpoints {
 
-    /**
-     * Create a new product (Merchant privilege)
-     */
+
     public static Response createProduct(ProductPayload payload) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -27,17 +21,13 @@ public class ProductEndpoints {
                 .response();
     }
 
-    /**
-     * Create product and extract product ID for API chaining
-     */
+
     public static String createProductAndGetId(ProductPayload payload) {
         Response response = createProduct(payload);
         return response.jsonPath().getString("productId");
     }
 
-    /**
-     * Get product by ID
-     */
+
     public static Response getProductById(String productId) {
         return given()
                 .spec(ReusableRequestSpec.buildRequestSpec())
@@ -48,9 +38,7 @@ public class ProductEndpoints {
                 .response();
     }
 
-    /**
-     * Get all products with pagination and filters
-     */
+
     public static Response getAllProducts(Integer pageNumber, Integer pageSize, String sortBy) {
         return given()
                 .spec(ReusableRequestSpec.buildRequestSpec())
@@ -64,9 +52,7 @@ public class ProductEndpoints {
                 .response();
     }
 
-    /**
-     * Get product by merchant ID
-     */
+
     public static Response getProductsByMerchant(String merchantId) {
         return given()
                 .spec(ReusableRequestSpec.buildRequestSpec())
@@ -77,9 +63,7 @@ public class ProductEndpoints {
                 .response();
     }
 
-    /**
-     * Get all products alphabetically sorted
-     */
+
     public static Response getAllProductsAlphabetically() {
         return given()
                 .spec(ReusableRequestSpec.buildRequestSpec())
@@ -90,9 +74,7 @@ public class ProductEndpoints {
                 .response();
     }
 
-    /**
-     * Update product details
-     */
+
     public static Response updateProduct(String productId, ProductPayload payload) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -104,9 +86,7 @@ public class ProductEndpoints {
                 .response();
     }
 
-    /**
-     * Delete product
-     */
+
     public static Response deleteProduct(String productId) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -117,9 +97,7 @@ public class ProductEndpoints {
                 .response();
     }
 
-    /**
-     * Search products by name
-     */
+
     public static Response searchProducts(String searchTerm) {
         return given()
                 .spec(ReusableRequestSpec.buildRequestSpec())
@@ -131,9 +109,7 @@ public class ProductEndpoints {
                 .response();
     }
 
-    /**
-     * Filter products by category
-     */
+
     public static Response filterProductsByCategory(String category) {
         return given()
                 .spec(ReusableRequestSpec.buildRequestSpec())
@@ -145,9 +121,7 @@ public class ProductEndpoints {
                 .response();
     }
 
-    /**
-     * Filter products by price range
-     */
+
     public static Response filterProductsByPrice(Double minPrice, Double maxPrice) {
         return given()
                 .spec(ReusableRequestSpec.buildRequestSpec())
@@ -160,9 +134,7 @@ public class ProductEndpoints {
                 .response();
     }
 
-    /**
-     * Filter products by brand
-     */
+
     public static Response filterProductsByBrand(String brand) {
         return given()
                 .spec(ReusableRequestSpec.buildRequestSpec())
@@ -174,9 +146,7 @@ public class ProductEndpoints {
                 .response();
     }
 
-    /**
-     * Filter products by rating
-     */
+
     public static Response filterProductsByRating(Double minRating) {
         return given()
                 .spec(ReusableRequestSpec.buildRequestSpec())
@@ -188,9 +158,7 @@ public class ProductEndpoints {
                 .response();
     }
 
-    /**
-     * Get in-stock products
-     */
+
     public static Response getInStockProducts() {
         return given()
                 .spec(ReusableRequestSpec.buildRequestSpec())
@@ -202,9 +170,7 @@ public class ProductEndpoints {
                 .response();
     }
 
-    /**
-     * Get out-of-stock products
-     */
+
     public static Response getOutOfStockProducts() {
         return given()
                 .spec(ReusableRequestSpec.buildRequestSpec())
@@ -216,3 +182,4 @@ public class ProductEndpoints {
                 .response();
     }
 }
+

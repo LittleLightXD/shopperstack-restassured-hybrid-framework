@@ -3,16 +3,12 @@ package api.dataproviders;
 import api.utils.FakeDataGenerator;
 import org.testng.annotations.DataProvider;
 
-/**
- * ShopperDataProvider - Test data for Shopper module test cases
- * Provides realistic test data variations for different shopper scenarios
- */
 public class ShopperDataProvider {
 
     @DataProvider(name = "validShopperData")
     public Object[][] validShopperData() {
         return new Object[][] {
-            {FakeDataGenerator.getFirstName(), FakeDataGenerator.getLastName(), 
+            {FakeDataGenerator.getFirstName(), FakeDataGenerator.getLastName(),
              FakeDataGenerator.getUniqueEmail(), FakeDataGenerator.getPhoneNumber()},
             {"John", "Doe", FakeDataGenerator.getUniqueEmail(), FakeDataGenerator.getPhoneNumber()},
             {"Jane", "Smith", FakeDataGenerator.getUniqueEmail(), FakeDataGenerator.getPhoneNumber()},
@@ -23,7 +19,7 @@ public class ShopperDataProvider {
     @DataProvider(name = "shopperWithAddressData")
     public Object[][] shopperWithAddressData() {
         return new Object[][] {
-            {FakeDataGenerator.getFirstName(), FakeDataGenerator.getLastName(), 
+            {FakeDataGenerator.getFirstName(), FakeDataGenerator.getLastName(),
              FakeDataGenerator.getUniqueEmail(), FakeDataGenerator.getAddress(), FakeDataGenerator.getCity()},
             {"John", "Doe", FakeDataGenerator.getUniqueEmail(), FakeDataGenerator.getAddress(), FakeDataGenerator.getCity()},
             {"Jane", "Smith", FakeDataGenerator.getUniqueEmail(), FakeDataGenerator.getAddress(), FakeDataGenerator.getCity()},
@@ -51,9 +47,9 @@ public class ShopperDataProvider {
     @DataProvider(name = "shopperPasswordValidationData")
     public Object[][] shopperPasswordValidationData() {
         return new Object[][] {
-            {"John", "Doe", FakeDataGenerator.getUniqueEmail(), "123", "123"},  // Too short
-            {"Jane", "Smith", FakeDataGenerator.getUniqueEmail(), "abc123", "abc123"},  // No special char
-            {"Robert", "Johnson", FakeDataGenerator.getUniqueEmail(), "Pass123!", "Pass456!"},  // Mismatch
+            {"John", "Doe", FakeDataGenerator.getUniqueEmail(), "123", "123"},
+            {"Jane", "Smith", FakeDataGenerator.getUniqueEmail(), "abc123", "abc123"},
+            {"Robert", "Johnson", FakeDataGenerator.getUniqueEmail(), "Pass123!", "Pass456!"},
         };
     }
 
@@ -76,3 +72,4 @@ public class ShopperDataProvider {
         };
     }
 }
+

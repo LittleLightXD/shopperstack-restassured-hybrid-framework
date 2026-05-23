@@ -2,10 +2,6 @@ package api.payload;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * ReviewPayload - POJO for Product Review API request/response
- * Contains all review-related fields for product ratings and comments
- */
 public class ReviewPayload {
 
     @JsonProperty("reviewId")
@@ -53,15 +49,15 @@ public class ReviewPayload {
     @JsonProperty("updatedDateTime")
     private String updatedDateTime;
 
-    // Nested RatingDistribution class
+
     public static class RatingDistribution {
-        @JsonProperty("fiveStarCount") 
+        @JsonProperty("fiveStarCount")
         private Integer fiveStarCount;
 
-        @JsonProperty("fourStarCount") 
+        @JsonProperty("fourStarCount")
         private Integer fourStarCount;
 
-        @JsonProperty("threeStarCount") 
+        @JsonProperty("threeStarCount")
         private Integer threeStarCount;
 
         @JsonProperty("twoStarCount")
@@ -76,7 +72,7 @@ public class ReviewPayload {
         @JsonProperty("totalReviews")
         private Integer totalReviews;
 
-        // Constructors
+
         public RatingDistribution() {}
 
         public RatingDistribution(Integer fiveStarCount, Integer fourStarCount, Integer threeStarCount) {
@@ -85,7 +81,7 @@ public class ReviewPayload {
             this.threeStarCount = threeStarCount;
         }
 
-        // Getters and Setters
+
         public Integer getFiveStarCount() {
             return fiveStarCount;
         }
@@ -143,7 +139,7 @@ public class ReviewPayload {
         }
     }
 
-    // Constructors
+
     public ReviewPayload() {}
 
     public ReviewPayload(String productId, String shopperId, Integer rating, String comment) {
@@ -153,7 +149,7 @@ public class ReviewPayload {
         this.comment = comment;
     }
 
-    // Getters and Setters
+
     public String getReviewId() {
         return reviewId;
     }
@@ -274,3 +270,4 @@ public class ReviewPayload {
         this.updatedDateTime = updatedDateTime;
     }
 }
+

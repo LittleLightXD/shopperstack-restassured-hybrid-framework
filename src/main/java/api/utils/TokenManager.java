@@ -5,19 +5,13 @@ import io.restassured.response.Response;
 import api.specs.ReusableRequestSpec;
 import static io.restassured.RestAssured.*;
 
-/**
- * TokenManager class to manage authentication tokens
- * Stores token and provides reusable access
- */
 public class TokenManager {
 
     private static String token;
     private static String userId;
     private static final String LOGIN_ENDPOINT = "/api/admin/login";
 
-    /**
-     * Login and get token (executes only once)
-     */
+
     public static void generateToken() {
         if (token != null) {
             System.out.println("Token already generated, reusing existing token");
@@ -52,9 +46,7 @@ public class TokenManager {
         }
     }
 
-    /**
-     * Get stored token
-     */
+
     public static String getToken() {
         if (token == null) {
             generateToken();
@@ -62,9 +54,7 @@ public class TokenManager {
         return token;
     }
 
-    /**
-     * Get stored user ID
-     */
+
     public static String getUserId() {
         if (userId == null) {
             generateToken();
@@ -72,33 +62,26 @@ public class TokenManager {
         return userId;
     }
 
-    /**
-     * Set token manually (useful for test scenarios)
-     */
+
     public static void setToken(String authToken) {
         token = authToken;
     }
 
-    /**
-     * Set user ID manually
-     */
+
     public static void setUserId(String id) {
         userId = id;
     }
 
-    /**
-     * Clear token (useful for logout scenarios)
-     */
+
     public static void clearToken() {
         token = null;
         userId = null;
         System.out.println("Token cleared");
     }
 
-    /**
-     * Check if token is available
-     */
+
     public static boolean isTokenAvailable() {
         return token != null && !token.isEmpty();
     }
 }
+

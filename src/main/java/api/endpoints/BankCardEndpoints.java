@@ -7,15 +7,9 @@ import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
 
-/**
- * BankCardEndpoints - REST API endpoints for Bank Account operations
- * Provides bank account management (create, verify, update balance, transactions)
- */
 public class BankCardEndpoints {
 
-    /**
-     * Create a new bank account
-     */
+
     public static Response createBankAccount(BankCardPayload payload) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -27,17 +21,13 @@ public class BankCardEndpoints {
                 .response();
     }
 
-    /**
-     * Create bank account and extract account ID
-     */
+
     public static String createBankAccountAndGetId(BankCardPayload payload) {
         Response response = createBankAccount(payload);
         return response.jsonPath().getString("bankAccountId");
     }
 
-    /**
-     * Get bank account by ID
-     */
+
     public static Response getBankAccountById(String bankAccountId) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -48,9 +38,7 @@ public class BankCardEndpoints {
                 .response();
     }
 
-    /**
-     * Get all bank accounts
-     */
+
     public static Response getAllBankAccounts() {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -61,9 +49,7 @@ public class BankCardEndpoints {
                 .response();
     }
 
-    /**
-     * Verify bank account
-     */
+
     public static Response verifyBankAccount(String bankAccountId) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -74,9 +60,7 @@ public class BankCardEndpoints {
                 .response();
     }
 
-    /**
-     * Update bank account balance
-     */
+
     public static Response updateBankAccountBalance(String bankAccountId, Double newBalance) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -88,9 +72,7 @@ public class BankCardEndpoints {
                 .response();
     }
 
-    /**
-     * Create bank transaction (Debit/Credit)
-     */
+
     public static Response createBankTransaction(String bankAccountId, BankCardPayload.TransactionDetails transaction) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -102,9 +84,7 @@ public class BankCardEndpoints {
                 .response();
     }
 
-    /**
-     * Get bank account transaction history
-     */
+
     public static Response getBankAccountTransactions(String bankAccountId) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -116,9 +96,7 @@ public class BankCardEndpoints {
                 .response();
     }
 
-    /**
-     * Delete bank account
-     */
+
     public static Response deleteBankAccount(String bankAccountId) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -129,9 +107,7 @@ public class BankCardEndpoints {
                 .response();
     }
 
-    /**
-     * Set bank account as default
-     */
+
     public static Response setBankAccountAsDefault(String bankAccountId) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -143,3 +119,4 @@ public class BankCardEndpoints {
                 .response();
     }
 }
+

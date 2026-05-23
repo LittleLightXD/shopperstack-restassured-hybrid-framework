@@ -3,10 +3,6 @@ package api.dataproviders;
 import api.utils.FakeDataGenerator;
 import org.testng.annotations.DataProvider;
 
-/**
- * ProductDataProvider - Test data for Product module test cases
- * Provides realistic test data variations for different product scenarios
- */
 public class ProductDataProvider {
 
     @DataProvider(name = "validProductData")
@@ -79,3 +75,4 @@ public class ProductDataProvider {
         };
     }
 }
+

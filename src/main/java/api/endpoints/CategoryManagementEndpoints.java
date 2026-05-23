@@ -7,9 +7,6 @@ import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
 
-/**
- * CategoryManagementEndpoints - REST API endpoints for Category Management
- */
 public class CategoryManagementEndpoints {
 
     private static final String CATEGORY_BASE = "/api/categories";
@@ -107,3 +104,4 @@ public class CategoryManagementEndpoints {
                 .response();
     }
 }
+

@@ -7,9 +7,6 @@ import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
 
-/**
- * ReportingEndpoints - REST API endpoints for Reporting and Analytics
- */
 public class ReportingEndpoints {
 
     private static final String REPORTING_BASE = "/api/reports";
@@ -159,3 +156,4 @@ public class ReportingEndpoints {
                 .response();
     }
 }
+

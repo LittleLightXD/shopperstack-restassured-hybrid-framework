@@ -11,19 +11,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 
-/**
- * ReusableRequestSpec class to create reusable RequestSpecification
- */
 public class ReusableRequestSpec {
 
-    /**
-     * Build request specification with base URI and common settings
-     */
+
     public static RequestSpecification buildRequestSpec() {
         ConfigReader config = ConfigReader.getInstance();
-        
+
         RequestSpecBuilder builder = new RequestSpecBuilder();
-        
+
         builder.setBaseUri(config.getBaseURL())
                .setContentType(ContentType.JSON)
                .setAccept(ContentType.JSON);
@@ -35,22 +30,18 @@ public class ReusableRequestSpec {
         return builder.build();
     }
 
-    /**
-     * Build request specification with authentication token
-     */
+
     public static RequestSpecification buildAuthenticatedRequestSpec(String token) {
         RequestSpecification spec = buildRequestSpec();
         return spec.header("Authorization", "Bearer " + token);
     }
 
-    /**
-     * Add logging filters to request specification
-     */
+
     private static void addLogging(RequestSpecBuilder builder) {
         try {
             PrintStream requestLog = new PrintStream(new FileOutputStream("./test-output/request-logs.txt", true));
             PrintStream responseLog = new PrintStream(new FileOutputStream("./test-output/response-logs.txt", true));
-            
+
             builder.addFilter(new RequestLoggingFilter(requestLog));
             builder.addFilter(new ResponseLoggingFilter(responseLog));
         } catch (IOException e) {
@@ -58,12 +49,10 @@ public class ReusableRequestSpec {
         }
     }
 
-    /**
-     * Build request spec with custom base URI
-     */
+
     public static RequestSpecification buildRequestSpecWithBaseURI(String baseURI) {
         RequestSpecBuilder builder = new RequestSpecBuilder();
-        
+
         builder.setBaseUri(baseURI)
                .setContentType(ContentType.JSON)
                .setAccept(ContentType.JSON);
@@ -76,18 +65,17 @@ public class ReusableRequestSpec {
         return builder.build();
     }
 
-    /**
-     * Build request spec with custom headers
-     */
+
     public static RequestSpecification buildRequestSpecWithHeaders(String... headers) {
         RequestSpecification spec = buildRequestSpec();
-        
+
         if (headers.length % 2 == 0) {
             for (int i = 0; i < headers.length; i += 2) {
                 spec = spec.header(headers[i], headers[i + 1]);
             }
         }
-        
+
         return spec;
     }
 }
+

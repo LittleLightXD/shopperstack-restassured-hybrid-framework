@@ -2,9 +2,6 @@ package api.dataproviders;
 
 import org.testng.annotations.DataProvider;
 
-/**
- * MerchantApprovalDataProvider - Data provider for merchant approval test cases
- */
 public class MerchantApprovalDataProvider {
 
     @DataProvider(name = "merchantApprovalData")
@@ -17,3 +14,4 @@ public class MerchantApprovalDataProvider {
         };
     }
 }
+

@@ -1,8 +1,5 @@
 package api.payload;
 
-/**
- * MerchantPayload - POJO for Merchant request body
- */
 public class MerchantPayload {
 
     private String businessType;
@@ -24,7 +21,7 @@ public class MerchantPayload {
     private CompanyDetails companyDetails;
     private AddressDetails addressDetails;
 
-    // Constructors
+
     public MerchantPayload() {
     }
 
@@ -35,7 +32,7 @@ public class MerchantPayload {
         this.phone = phone;
     }
 
-    // Getters and Setters
+
     public String getBusinessType() {
         return businessType;
     }
@@ -180,9 +177,7 @@ public class MerchantPayload {
         this.addressDetails = addressDetails;
     }
 
-    /**
-     * Nested class for Company Details
-     */
+
     public static class CompanyDetails {
         private String companyName;
         private String businessType;
@@ -222,9 +217,7 @@ public class MerchantPayload {
         }
     }
 
-    /**
-     * Nested class for Address Details
-     */
+
     public static class AddressDetails {
         private String address;
         private String city;
@@ -284,3 +277,4 @@ public class MerchantPayload {
         }
     }
 }
+

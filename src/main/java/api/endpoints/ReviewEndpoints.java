@@ -7,15 +7,9 @@ import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
 
-/**
- * ReviewEndpoints - REST API endpoints for Product Review module
- * Provides all review-related operations (create, retrieve, update, delete, helpful votes)
- */
 public class ReviewEndpoints {
 
-    /**
-     * Create a new product review
-     */
+
     public static Response createReview(ReviewPayload payload) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -27,17 +21,13 @@ public class ReviewEndpoints {
                 .response();
     }
 
-    /**
-     * Create review and extract review ID for API chaining
-     */
+
     public static String createReviewAndGetId(ReviewPayload payload) {
         Response response = createReview(payload);
         return response.jsonPath().getString("reviewId");
     }
 
-    /**
-     * Get all reviews for a product
-     */
+
     public static Response getProductReviews(String productId) {
         return given()
                 .spec(ReusableRequestSpec.buildRequestSpec())
@@ -48,9 +38,7 @@ public class ReviewEndpoints {
                 .response();
     }
 
-    /**
-     * Get reviews by rating
-     */
+
     public static Response getReviewsByRating(String productId, Integer rating) {
         return given()
                 .spec(ReusableRequestSpec.buildRequestSpec())
@@ -62,9 +50,7 @@ public class ReviewEndpoints {
                 .response();
     }
 
-    /**
-     * Get verified purchase reviews only
-     */
+
     public static Response getVerifiedPurchaseReviews(String productId) {
         return given()
                 .spec(ReusableRequestSpec.buildRequestSpec())
@@ -76,9 +62,7 @@ public class ReviewEndpoints {
                 .response();
     }
 
-    /**
-     * Get reviews with images/videos
-     */
+
     public static Response getMediaReviews(String productId) {
         return given()
                 .spec(ReusableRequestSpec.buildRequestSpec())
@@ -90,9 +74,7 @@ public class ReviewEndpoints {
                 .response();
     }
 
-    /**
-     * Update review
-     */
+
     public static Response updateReview(String reviewId, ReviewPayload payload) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -104,9 +86,7 @@ public class ReviewEndpoints {
                 .response();
     }
 
-    /**
-     * Delete review
-     */
+
     public static Response deleteReview(String reviewId) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -117,9 +97,7 @@ public class ReviewEndpoints {
                 .response();
     }
 
-    /**
-     * Mark review as helpful
-     */
+
     public static Response markReviewHelpful(String reviewId) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -131,9 +109,7 @@ public class ReviewEndpoints {
                 .response();
     }
 
-    /**
-     * Mark review as unhelpful
-     */
+
     public static Response markReviewUnhelpful(String reviewId) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -145,9 +121,7 @@ public class ReviewEndpoints {
                 .response();
     }
 
-    /**
-     * Get reviews sorting by most helpful
-     */
+
     public static Response getMostHelpfulReviews(String productId) {
         return given()
                 .spec(ReusableRequestSpec.buildRequestSpec())
@@ -159,9 +133,7 @@ public class ReviewEndpoints {
                 .response();
     }
 
-    /**
-     * Get reviews sorting by most recent
-     */
+
     public static Response getMostRecentReviews(String productId) {
         return given()
                 .spec(ReusableRequestSpec.buildRequestSpec())
@@ -173,9 +145,7 @@ public class ReviewEndpoints {
                 .response();
     }
 
-    /**
-     * Get review rating distribution for product
-     */
+
     public static Response getRatingDistribution(String productId) {
         return given()
                 .spec(ReusableRequestSpec.buildRequestSpec())
@@ -187,9 +157,7 @@ public class ReviewEndpoints {
                 .response();
     }
 
-    /**
-     * Report inappropriate review
-     */
+
     public static Response reportReview(String reviewId, String reason) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
@@ -201,3 +169,4 @@ public class ReviewEndpoints {
                 .response();
     }
 }
+

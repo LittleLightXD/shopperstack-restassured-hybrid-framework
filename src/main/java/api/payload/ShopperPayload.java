@@ -2,10 +2,6 @@ package api.payload;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * ShopperPayload - POJO for Shopper API request/response
- * Contains all shopper-related fields for registration, login, and profile management
- */
 public class ShopperPayload {
 
     @JsonProperty("firstName")
@@ -47,7 +43,7 @@ public class ShopperPayload {
     @JsonProperty("status")
     private String status;
 
-    // Nested Address class for shopper address details
+
     public static class AddressDetails {
         @JsonProperty("address")
         private String address;
@@ -70,7 +66,7 @@ public class ShopperPayload {
         @JsonProperty("isDefault")
         private Boolean isDefault;
 
-        // Constructors
+
         public AddressDetails() {}
 
         public AddressDetails(String address, String city, String state, String country, String zipCode) {
@@ -81,7 +77,7 @@ public class ShopperPayload {
             this.zipCode = zipCode;
         }
 
-        // Getters and Setters
+
         public String getAddress() {
             return address;
         }
@@ -139,7 +135,7 @@ public class ShopperPayload {
         }
     }
 
-    // Nested BankAccount class for shopper bank account details
+
     public static class BankAccountDetails {
         @JsonProperty("accountNumber")
         private String accountNumber;
@@ -159,7 +155,7 @@ public class ShopperPayload {
         @JsonProperty("isDefault")
         private Boolean isDefault;
 
-        // Constructors
+
         public BankAccountDetails() {}
 
         public BankAccountDetails(String accountNumber, String accountHolderName, String bankName, String ifscCode) {
@@ -169,7 +165,7 @@ public class ShopperPayload {
             this.ifscCode = ifscCode;
         }
 
-        // Getters and Setters
+
         public String getAccountNumber() {
             return accountNumber;
         }
@@ -219,7 +215,7 @@ public class ShopperPayload {
         }
     }
 
-    // Constructors
+
     public ShopperPayload() {}
 
     public ShopperPayload(String firstName, String lastName, String email, String password, String phone) {
@@ -230,7 +226,7 @@ public class ShopperPayload {
         this.phone = phone;
     }
 
-    // Getters and Setters
+
     public String getFirstName() {
         return firstName;
     }
@@ -335,3 +331,4 @@ public class ShopperPayload {
         this.status = status;
     }
 }
+
