@@ -2,14 +2,17 @@ package api.utils;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import api.payload.AdminPayload;
+import api.payload.LoginAdminPayload;
 import api.specs.ReusableRequestSpec;
+import api.endpoints.Routes;
 import static io.restassured.RestAssured.*;
 
 public class TokenManager {
 
     private static String token;
     private static String userId;
-    private static final String LOGIN_ENDPOINT = "/api/admin/login";
+    private static final String LOGIN_ENDPOINT = Routes.LOGIN;
 
 
     public static void generateToken() {
@@ -19,24 +22,24 @@ public class TokenManager {
         }
 
         ConfigReader config = ConfigReader.getInstance();
-        String username = config.getAdminUsername();
-        String password = config.getAdminPassword();
+        LoginAdminPayload loginPayload = new LoginAdminPayload(
+                config.getAdminUsername(), config.getAdminPassword());
 
         try {
-            Response response = given()
-                    .spec(ReusableRequestSpec.buildRequestSpec())
-                    .body("{\"email\":\"" + username + "\",\"password\":\"" + password + "\"}")
-                    .when()
-                    .post(LOGIN_ENDPOINT)
-                    .then()
-                    .extract()
-                    .response();
+            Response response = login(loginPayload);
+
+            if (response.getStatusCode() == 401) {
+                loginPayload = registerDisposableAdmin();
+                response = login(loginPayload);
+            }
 
             if (response.getStatusCode() == 200) {
-                token = response.jsonPath().getString("token");
-                userId = response.jsonPath().getString("userId");
+                token = response.jsonPath().getString("data.jwtToken");
+                userId = response.jsonPath().getString("data.userId");
+                if (token == null || token.isBlank()) {
+                    throw new IllegalStateException("Login response did not contain data.jwtToken");
+                }
                 System.out.println("✓ Token generated successfully");
-                System.out.println("Token: " + token);
             } else {
                 System.out.println("✗ Failed to generate token. Status Code: " + response.getStatusCode());
             }
@@ -44,6 +47,53 @@ public class TokenManager {
             System.out.println("Error generating token: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    private static Response login(LoginAdminPayload loginPayload) {
+        return given()
+                .spec(ReusableRequestSpec.buildRequestSpec())
+                .body(loginPayload)
+                .when()
+                .post(LOGIN_ENDPOINT)
+                .then()
+                .extract()
+                .response();
+    }
+
+    private static LoginAdminPayload registerDisposableAdmin() {
+        String email = FakeDataGenerator.getUniqueEmail();
+        String password = FakeDataGenerator.getStrongPassword();
+
+        AdminPayload admin = new AdminPayload();
+        admin.setCity("Bangalore");
+        admin.setCountry("India");
+        admin.setDob("1990-01-01");
+        admin.setEmail(email);
+        admin.setFirstName(FakeDataGenerator.getFirstName());
+        admin.setGender("MALE");
+        admin.setLastName(FakeDataGenerator.getLastName());
+        admin.setPassword(password);
+        admin.setPhone(FakeDataGenerator.getPhoneNumber());
+        admin.setRole("ADMIN");
+        admin.setState("Karnataka");
+        admin.setStatus("ACTIVE");
+        admin.setZoneId("ALPHA");
+
+        Response response = given()
+                .spec(ReusableRequestSpec.buildRequestSpec())
+                .body(admin)
+                .when()
+                .post(Routes.CREATE_ADMIN)
+                .then()
+                .extract()
+                .response();
+
+        if (response.getStatusCode() != 201) {
+            throw new IllegalStateException(
+                    "Could not create a disposable admin. Status code: " + response.getStatusCode());
+        }
+
+        return new LoginAdminPayload(email, password);
     }
 
 
@@ -84,4 +134,3 @@ public class TokenManager {
         return token != null && !token.isEmpty();
     }
 }
-

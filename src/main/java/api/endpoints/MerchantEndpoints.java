@@ -94,9 +94,9 @@ public class MerchantEndpoints {
         Response response = given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
                 .pathParam("merchantId", merchantId)
-                .body("{\"status\":\"" + status + "\"}")
+                .queryParam("status", status)
                 .when()
-                .put(Routes.UPDATE_MERCHANT_STATUS)
+                .patch(Routes.UPDATE_MERCHANT_STATUS)
                 .then()
                 .extract()
                 .response();
@@ -152,7 +152,7 @@ public class MerchantEndpoints {
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
                 .queryParam("status", status)
                 .when()
-                .get(Routes.CREATE_MERCHANT)
+                .get(Routes.GET_MERCHANT_ZONEID)
                 .then()
                 .extract()
                 .response();
@@ -160,4 +160,3 @@ public class MerchantEndpoints {
         return response;
     }
 }
-

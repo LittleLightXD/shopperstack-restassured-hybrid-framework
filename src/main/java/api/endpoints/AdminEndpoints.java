@@ -89,8 +89,8 @@ public class AdminEndpoints {
                 .response();
 
         if (response.getStatusCode() == 200) {
-            String token = response.jsonPath().getString("token");
-            String userId = response.jsonPath().getString("userId");
+            String token = response.jsonPath().getString("data.jwtToken");
+            String userId = response.jsonPath().getString("data.userId");
             TokenManager.setToken(token);
             TokenManager.setUserId(userId);
         }
@@ -98,4 +98,3 @@ public class AdminEndpoints {
         return response;
     }
 }
-

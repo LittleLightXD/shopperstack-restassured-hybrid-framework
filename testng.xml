@@ -24,33 +24,33 @@
         </classes>
     </test>
 
-    <test name="Merchant Approval Tests">
+    <test name="Merchant Tests">
         <classes>
-            <class name="api.testcases.MerchantApprovalTestcases"/>
+            <class name="api.testcases.MerchantTestcases"/>
         </classes>
     </test>
 
-    <test name="Category Management Tests">
+    <test name="Shopper Tests">
         <classes>
-            <class name="api.testcases.CategoryManagementTestcases"/>
+            <class name="api.testcases.ShopperTestcases"/>
         </classes>
     </test>
 
-    <test name="Product Management Tests">
+    <test name="Product Tests">
         <classes>
-            <class name="api.testcases.ProductManagementTestcases"/>
+            <class name="api.testcases.ProductTestcases"/>
         </classes>
     </test>
 
-    <test name="Order Management Tests">
+    <test name="Order Tests">
         <classes>
-            <class name="api.testcases.OrderManagementTestcases"/>
+            <class name="api.testcases.OrderTestcases"/>
         </classes>
     </test>
 
-    <test name="Reporting Tests">
+    <test name="Review Tests">
         <classes>
-            <class name="api.testcases.ReportingTestcases"/>
+            <class name="api.testcases.ReviewTestcases"/>
         </classes>
     </test>
 

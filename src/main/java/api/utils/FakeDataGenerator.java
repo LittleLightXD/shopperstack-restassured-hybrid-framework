@@ -19,12 +19,12 @@ public class FakeDataGenerator {
 
 
     public static String getEmail() {
-        return faker.internet().emailAddress();
+        return getUniqueEmail();
     }
 
 
     public static String getUniqueEmail() {
-        return "user" + System.currentTimeMillis() + "@" + faker.internet().domainName();
+        return "user" + System.currentTimeMillis() + faker.number().numberBetween(100, 999) + "@gmail.com";
     }
 
 
@@ -39,7 +39,7 @@ public class FakeDataGenerator {
 
 
     public static String getPhoneNumber() {
-        return faker.phoneNumber().cellPhone();
+        return "9" + faker.number().digits(9);
     }
 
 

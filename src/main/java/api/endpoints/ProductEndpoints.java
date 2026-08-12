@@ -10,9 +10,10 @@ import static io.restassured.RestAssured.given;
 public class ProductEndpoints {
 
 
-    public static Response createProduct(ProductPayload payload) {
+    public static Response createProduct(String merchantId, ProductPayload payload) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
+                .queryParam("merchantId", merchantId)
                 .body(payload)
                 .when()
                 .post(Routes.PRODUCT)
@@ -23,8 +24,7 @@ public class ProductEndpoints {
 
 
     public static String createProductAndGetId(ProductPayload payload) {
-        Response response = createProduct(payload);
-        return response.jsonPath().getString("productId");
+        throw new UnsupportedOperationException("A merchant id is required by the Postman collection.");
     }
 
 
@@ -78,9 +78,10 @@ public class ProductEndpoints {
     public static Response updateProduct(String productId, ProductPayload payload) {
         return given()
                 .spec(ReusableRequestSpec.buildAuthenticatedRequestSpec(TokenManager.getToken()))
+                .queryParam("productId", productId)
                 .body(payload)
                 .when()
-                .put(Routes.SINGLE_PRODUCT.replace("{productId}", productId))
+                .put(Routes.PRODUCT)
                 .then()
                 .extract()
                 .response();
@@ -182,4 +183,3 @@ public class ProductEndpoints {
                 .response();
     }
 }
-

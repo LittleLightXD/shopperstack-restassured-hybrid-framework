@@ -7,9 +7,12 @@ import api.payload.LoginAdminPayload;
 import api.utils.FakeDataGenerator;
 import api.logging.CustomLogger;
 import api.dataproviders.AdminDataProvider;
+import api.specs.ReusableRequestSpec;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import static io.restassured.RestAssured.given;
 
 public class Admintestcases extends BaseTest {
 
@@ -67,7 +70,6 @@ public class Admintestcases extends BaseTest {
 
 
         Response response = AdminEndpoints.getAdminById(adminId);
-
 
         Assert.assertEquals(response.getStatusCode(), 200, "Expected status code 200");
         Assert.assertEquals(response.jsonPath().getString("adminId"), adminId, "Admin ID should match");
@@ -271,11 +273,17 @@ public class Admintestcases extends BaseTest {
 
 
 
-        Response response = AdminEndpoints.getAdminById(adminId);
+        Response response = given()
+                .spec(ReusableRequestSpec.buildRequestSpec())
+                .pathParam("adminId", adminId)
+                .when()
+                .get(api.endpoints.Routes.GET_ADMIN);
+
+        Assert.assertEquals(response.getStatusCode(), 401,
+                "An unauthenticated request should return 401");
 
 
         CustomLogger.info("✓ Token validation test completed");
         CustomLogger.endTestCase("unauthorizedAccess");
     }
 }
-
